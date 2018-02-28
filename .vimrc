@@ -105,6 +105,7 @@ set background=dark
 
 " NERDTree config
 autocmd vimenter * NERDTree
+let NERDTreeIgnore = ['\.pyc$']
 
 let g:lightline = {
     \ 'colorscheme': 'wombat',
@@ -150,8 +151,8 @@ endif
 
 " Promptline CONFIG
 let g:promptline_preset = {
-    \'a' : [ promptline#slices#python_virtualenv(), promptline#slices#host({'only_if_ssh': 1})],
-    \'b' : [ '$USER'],
+    \'a' : [ promptline#slices#python_virtualenv(), '$USER'],
+    \'b' : [ promptline#slices#host({'only_if_ssh': 1})],
     \'c' : [ promptline#slices#cwd() ],
     \'y' : [ promptline#slices#vcs_branch() ],
     \'warn' : [promptline#slices#last_exit_code()]}
