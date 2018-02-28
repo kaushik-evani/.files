@@ -123,8 +123,8 @@ let g:lightline = {
 " let g:airline_detect_paste=1
 " let g:airline#extensions#tabline#enabled = 1
 " let g:airline_theme='solarized'
-let g:hybrid_custom_term_colors = 1
-let g:hybrid_reduced_contrast = 1 
+" let g:hybrid_custom_term_colors = 1
+" let g:hybrid_reduced_contrast = 1 
 
 
 """""""""""""""""""""""""""""""""""""
@@ -148,4 +148,10 @@ if !has('gui_running')
   set t_Co=256
 endif
 
-" Lightline CONFIG
+" Promptline CONFIG
+let g:promptline_preset = {
+    \'a' : [ promptline#slices#python_virtualenv(), promptline#slices#host({'only_if_ssh': 1})],
+    \'b' : [ '$USER'],
+    \'c' : [ promptline#slices#cwd() ],
+    \'y' : [ promptline#slices#vcs_branch() ],
+    \'warn' : [promptline#slices#last_exit_code()]}
