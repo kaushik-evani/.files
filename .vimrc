@@ -56,14 +56,17 @@ Plugin 'valloric/youcompleteme'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'christoomey/vim-tmux-navigator'
 
  
 " Theme / Interface
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plugin 'itchyny/lightline.vim'
+" Plugin 'vim-airline/vim-airline'
+" Plugin 'vim-airline/vim-airline-themes'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'flazz/vim-colorschemes'
 Plugin 'ryanoasis/vim-devicons'
+Plugin 'edkolev/promptline.vim'
 "
 "
 "
@@ -98,16 +101,28 @@ set expandtab
 "----- GENERAL SETTINGS-------
 set laststatus=2
 set background=dark
-let g:solarized_termcolors=256
+" let g:solarized_termcolors=256
 
 " NERDTree config
 autocmd vimenter * NERDTree
 
+let g:lightline = {
+    \ 'colorscheme': 'wombat',
+    \ 'active': {
+    \   'left': [ [ 'mode', 'paste' ],
+    \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+    \ },
+    \ 'component_function': {
+    \   'gitbranch': 'fugitive#head'
+    \ },
+    \ 'separator': { 'left': "\ue0b0", 'right': "\ue0b2" },
+    \ 'subseparator': { 'left': "\ue0b1", 'right': "\ue0b3" }
+    \ }
 " Vim-Airline Configuration
-let g:airline_powerline_fonts = 1
-let g:airline_detect_paste=1
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_theme='solarized'
+" let g:airline_powerline_fonts = 1
+" let g:airline_detect_paste=1
+" let g:airline#extensions#tabline#enabled = 1
+" let g:airline_theme='solarized'
 let g:hybrid_custom_term_colors = 1
 let g:hybrid_reduced_contrast = 1 
 
@@ -127,3 +142,10 @@ let g:nerdtree_tabs_open_on_console_startup = 1
 
 " If you want :UltiSnipsEdit to split your window.
 "let g:UltiSnipsEditSplit="vertical"
+"
+" Config taken from lighline
+if !has('gui_running')
+  set t_Co=256
+endif
+
+" Lightline CONFIG
